@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 643249746007796503}
-  - component: {fileID: 7286050489364672817}
+  - component: {fileID: 962784610632173079}
+  - component: {fileID: 553504001480763456}
+  - component: {fileID: -8413824638694534005}
   m_Layer: 0
   m_Name: Pirates
   m_TagString: Untagged
@@ -32,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7286050489364672817
+--- !u!114 &962784610632173079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +43,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1805204604294671286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f513bb1bdd14c9349bb97d2509c373f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 18bc19e673f868c4698069fcc2237b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nation: 0
+  nation: 2
   food: 0
   wood: 0
   gold: 0
   stone: 0
+  aliveUnits: []
+--- !u!114 &553504001480763456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805204604294671286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ae2590674fcf64e81380549fbcf7aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  curUnit: {fileID: 0}
+--- !u!114 &-8413824638694534005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805204604294671286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8e1d5b430d60a489fee63cc9c8065d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
