@@ -26,7 +26,7 @@ public class UnitCommand : MonoBehaviour
     {
         if (unit != null)
         {
-            unit.MovetoPosition(dest);
+            unit.MoveToPosition(dest);
         }
     }
 
