@@ -5,21 +5,10 @@ using UnityEngine;
 public class Building : Structure
 {
     [SerializeField] private Transform spawnPoint;
-
-    public Transform SpawnPoint
-    {
-        get { return spawnPoint; }
-    }
-
+    public Transform SpawnPoint { get { return spawnPoint; } }
     [SerializeField] private Transform rallyPoint;
-
-    public Transform RallyPoint
-    {
-        get { return rallyPoint; }
-    }
-
+    public Transform RallyPoint { get { return rallyPoint; } }
     [SerializeField] private GameObject[] unitPrefabs;
-
     [SerializeField] private List<Unit> recruitList = new List<Unit>();
 
     [SerializeField] private float unitTimer = 0f;

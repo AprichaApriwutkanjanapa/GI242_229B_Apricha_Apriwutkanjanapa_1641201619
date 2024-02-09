@@ -66,6 +66,12 @@ public class Fraction : MonoBehaviour
     
     [SerializeField] private List<Building> aliveBuildings = new List<Building>();
     public List<Building> AliveBuildings { get { return aliveBuildings; } }
+    
+    public bool IsMyBuilding(Building b)
+    {
+        return aliveBuildings.Contains(b);
+    }
+
 
 
 }

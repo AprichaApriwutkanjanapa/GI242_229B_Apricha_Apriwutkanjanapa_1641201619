@@ -71,27 +71,24 @@ public class Unit : MonoBehaviour
     
     [SerializeField] private UnitCost unitCost;
     public UnitCost UnitCost { get { return unitCost; } }
-    
 
 //time for increasing progress 1% for this unit, less is faster
     [SerializeField] private float unitWaitTime = 0.1f;
     public float UnitWaitTime { get { return unitWaitTime; } }
 
-    
-    
     void Awake()
         {
             navAgent = GetComponent<NavMeshAgent>();
         }
 
-    public void ToggleSelectionVisual(bool flag)
+    public void ToggleSelectionVisual(bool flag)  //Check Toggle Flag under Current Unit 
     {
         if (selectionVisual != null)
             selectionVisual.SetActive(flag);
     }
     
-    //Move the Unit
-    public void SetState(UnitState toState)
+   
+    public void SetState(UnitState toState)  //Move the Unit
     {
         state = toState;
 

@@ -30,13 +30,18 @@ public class UnitSelect : MonoBehaviour
         instance = this;
     }
 
-    private void SelectUnit(RaycastHit hit)
+    private void SelectUnit(RaycastHit hit)  //Check if select unit is selected then toggle VFX
     {
         curUnit = hit.collider.GetComponent<Unit>();
 
         curUnit.ToggleSelectionVisual(true);
 
         Debug.Write("Selected Unit");
+
+        if (GameManager.instance.MyFaction.IsMyUnit(curUnit))
+        {
+            ShowUnit(curUnit);
+        }
     }
 
     private void TrySelect(Vector2 screenPos)
@@ -56,7 +61,7 @@ public class UnitSelect : MonoBehaviour
         }
     }
 
-    private void ClearAllSelectionVisual()
+    private void ClearAllSelectionVisual()  //Clear Flag under cur unit if cur unit is null
     {
         if (curUnit != null)
             curUnit.ToggleSelectionVisual(false);
@@ -66,6 +71,9 @@ public class UnitSelect : MonoBehaviour
     {
         ClearAllSelectionVisual();
         curUnit = null;
+        
+        //Clear UI
+        InfoManager.instance.ClearAllInfo();
     }
 
     // Update is called once per frame
@@ -82,6 +90,11 @@ public class UnitSelect : MonoBehaviour
         {
             TrySelect(Input.mousePosition);
         }
+    }
+
+    private void ShowUnit(Unit u)
+    {
+        InfoManager.instance.ShowAllInfo(u);
     }
 
 }

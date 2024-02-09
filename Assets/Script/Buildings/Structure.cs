@@ -25,9 +25,5 @@ public class Structure : MonoBehaviour
     
     [SerializeField]
     protected GameObject selectionVisual;
-
-    public GameObject SelectionVisual
-    {
-        get { return selectionVisual; }
-    }
+    public GameObject SelectionVisual { get { return selectionVisual; } }
 }
