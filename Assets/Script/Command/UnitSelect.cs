@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Debug = System.Diagnostics.Debug;
+using UnityEngine.EventSystems;
 
 public class UnitSelect : MonoBehaviour
 {
@@ -15,6 +15,12 @@ public class UnitSelect : MonoBehaviour
     private Fraction faction;
 
     public static UnitSelect instance;
+
+    [SerializeField] private Building curBuilding; //current selected single building
+    public Building CurBuilding
+    {
+        get { return curBuilding; }
+    }
 
     void Awake()
     {
@@ -36,7 +42,7 @@ public class UnitSelect : MonoBehaviour
 
         curUnit.ToggleSelectionVisual(true);
 
-        Debug.Write("Selected Unit");
+        Debug.Log("Selected Unit");
 
         if (GameManager.instance.MyFaction.IsMyUnit(curUnit))
         {
@@ -57,6 +63,9 @@ public class UnitSelect : MonoBehaviour
                 case "Unit":
                     SelectUnit(hit);
                     break;
+                case "Building":
+                    BuildingSelect(hit);
+                    break;
             }
         }
     }
@@ -65,12 +74,15 @@ public class UnitSelect : MonoBehaviour
     {
         if (curUnit != null)
             curUnit.ToggleSelectionVisual(false);
+        if (curBuilding != null)
+            curBuilding.ToggleSelectionVisual(false);
     }
 
-    private void ClearEverything()
+    private void ClearEverything() //clear everything UI screen. Unselect if press on cancel
     {
         ClearAllSelectionVisual();
         curUnit = null;
+        curBuilding = null;
         
         //Clear UI
         InfoManager.instance.ClearAllInfo();
@@ -82,6 +94,11 @@ public class UnitSelect : MonoBehaviour
         //mouse down
         if (Input.GetMouseButtonDown(0))
         {
+            //if click UI, don't clear
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            
+            
             ClearEverything();
         }
 
@@ -95,6 +112,23 @@ public class UnitSelect : MonoBehaviour
     private void ShowUnit(Unit u)
     {
         InfoManager.instance.ShowAllInfo(u);
+    }
+
+    private void ShowBuilding(Building b)
+    {
+        InfoManager.instance.ShowAllInfo(b);
+    }
+
+    private void BuildingSelect(RaycastHit hit)
+    {
+        curBuilding = hit.collider.GetComponent<Building>();
+        curBuilding.ToggleSelectionVisual(true);
+
+        if (GameManager.instance.MyFaction.IsMyBuilding(curBuilding))
+        {
+            //Debug.Log("my building");
+            ShowBuilding(curBuilding);
+        }
     }
 
 }

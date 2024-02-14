@@ -71,9 +71,9 @@ public class Unit : MonoBehaviour
     
     [SerializeField] private UnitCost unitCost;
     public UnitCost UnitCost { get { return unitCost; } }
-
-//time for increasing progress 1% for this unit, less is faster
-    [SerializeField] private float unitWaitTime = 0.1f;
+    
+    
+    [SerializeField] private float unitWaitTime = 0.1f; //time for increasing progress 1% for this unit, less is faster
     public float UnitWaitTime { get { return unitWaitTime; } }
 
     void Awake()
@@ -83,6 +83,7 @@ public class Unit : MonoBehaviour
 
     public void ToggleSelectionVisual(bool flag)  //Check Toggle Flag under Current Unit 
     {
+        Debug.Log("Flag Triggered");
         if (selectionVisual != null)
             selectionVisual.SetActive(flag);
     }
