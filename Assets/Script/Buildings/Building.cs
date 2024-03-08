@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
 public class Building : Structure
@@ -8,7 +10,11 @@ public class Building : Structure
     public Transform SpawnPoint { get { return spawnPoint; } }
     [SerializeField] private Transform rallyPoint;
     public Transform RallyPoint { get { return rallyPoint; } }
+    
     [SerializeField] private GameObject[] unitPrefabs;
+    public GameObject[] UnitPrefabs { get { return unitPrefabs; } }
+    
+    
     [SerializeField] private List<Unit> recruitList = new List<Unit>();
 
     [SerializeField] private float unitTimer = 0f;
@@ -16,11 +22,27 @@ public class Building : Structure
 
     [SerializeField] private float curUnitWaitTime = 0f;
 
+    [SerializeField] private bool isFunctional;
+    public bool InFunctional {get{ return isFunctional; } set { isFunctional = value; } }
+
+    [SerializeField] private bool isHQ;
+    public bool IsHQ { get { return isHQ; } }
+    
+    //How deep into the ground the building is at the construction site
+    [SerializeField] private float intoTheGround = 5f;
+    public float IntoTheGround { get { return intoTheGround; } }
+    
+    private float timer = 0f; //Constructing timer
+    public float Timer { get { return timer; } set { timer = value; } }
+    private float waitTime = 0.5f; //How fast it will be construct, higher is longer
+    public float WaitTime { get { return waitTime; } set { waitTime = value; } }
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        curHP = maxHP;
+        
     }
 
     public void ToCreateUnit(int i)
@@ -65,6 +87,7 @@ public class Building : Structure
         recruitList.RemoveAt(0);
 
         Unit unit = unitObj.GetComponent<Unit>();
+        unit.Faction = faction;
         unit.MoveToPosition(rallyPoint.position); //Go to Rally Point
 
         //Add unit into faction's Army
@@ -81,6 +104,7 @@ public class Building : Structure
         if (SelectionVisual != null)
             SelectionVisual.SetActive(flag);
     }
+    
 
     void Update()
     {

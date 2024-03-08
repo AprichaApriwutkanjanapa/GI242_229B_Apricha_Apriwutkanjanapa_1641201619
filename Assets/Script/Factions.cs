@@ -33,6 +33,16 @@ public class Fraction : MonoBehaviour
     
     [SerializeField] private List<Unit> aliveUnits = new List<Unit>();
     public List<Unit> AliveUnits { get { return aliveUnits; } }
+    
+    [SerializeField] private Transform unitsParent;
+    public Transform UnitsParent { get { return unitsParent; } }
+
+    [SerializeField] private Transform buildingsParent;
+    public Transform BuildingsParent { get { return buildingsParent; } }
+
+    [SerializeField] private Transform ghostBuildingParent;
+    public Transform GhostBuildingParent { get { return ghostBuildingParent; } }
+
 
     public bool CheckUnitCost(Unit unit)
     {
@@ -71,7 +81,31 @@ public class Fraction : MonoBehaviour
     {
         return aliveBuildings.Contains(b);
     }
+    
+    public bool CheckBuildingCost(Building building)
+    {
+        if (food < building.StructureCost.food)
+            return false;
 
+        if (wood < building.StructureCost.wood)
+            return false;
+
+        if (gold < building.StructureCost.gold)
+            return false;
+
+        if (stone < building.StructureCost.stone)
+            return false;
+
+        return true;
+    }
+
+    public void DeductBuildingCost(Building building)
+    {
+        food -= building.StructureCost.food;
+        wood -= building.StructureCost.wood;
+        gold -= building.StructureCost.gold;
+        stone -= building.StructureCost.stone;
+    }
 
 
 }

@@ -9,6 +9,12 @@ public enum UnitState
     Idle,
     Move,
     Attack,
+    MoveToBuild, //builder goes to build
+    BuildProgress, //buildewr builds in progress
+    MoveToResource, //worker goes to resource
+    Gather, //worker gather resource
+    DeliverToHQ, //worker come back
+    StoreHQ, //worker gives resource to HQ
     Die
 }
 
@@ -64,21 +70,49 @@ public class Unit : MonoBehaviour
     public NavMeshAgent NavAgent { get { return navAgent; } }
     
     [SerializeField] private Fraction faction;
+    public Fraction Faction { get { return faction; } set { faction = value; } }
     
     [SerializeField] private GameObject selectionVisual;
     public GameObject SelectionVisual { get { return selectionVisual; } }
+    
     
     
     [SerializeField] private UnitCost unitCost;
     public UnitCost UnitCost { get { return unitCost; } }
     
     
+    [SerializeField] private bool isBuilder;
+    public bool IsBuilder { get { return isBuilder; } set { isBuilder = value; } }
+
+    [SerializeField] private Builder builder;
+    public Builder Builder { get { return builder; } }
+
+
+    
+    
     [SerializeField] private float unitWaitTime = 0.1f; //time for increasing progress 1% for this unit, less is faster
     public float UnitWaitTime { get { return unitWaitTime; } }
+    
+    [SerializeField] private bool isWorker;
+    public bool IsWorker { get { return isWorker; } set { isWorker = value; } }
+
+    [SerializeField] private Worker worker;
+    public Worker Worker { get { return worker; } }
+
 
     void Awake()
         {
             navAgent = GetComponent<NavMeshAgent>();
+            
+            //get the components
+            if (IsBuilder)
+            {
+                builder = GetComponent<Builder>();
+            }
+            
+            //get the components
+            if (IsWorker)
+                worker = GetComponent<Worker>();
         }
 
     public void ToggleSelectionVisual(bool flag)  //Check Toggle Flag under Current Unit 
@@ -120,6 +154,15 @@ public class Unit : MonoBehaviour
             SetState(UnitState.Idle);
         }
     }
+    
+    public void LookAt(Vector3 pos)
+    {
+        Vector3 dir = (pos - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    }
+
 
     void Update()
     {
