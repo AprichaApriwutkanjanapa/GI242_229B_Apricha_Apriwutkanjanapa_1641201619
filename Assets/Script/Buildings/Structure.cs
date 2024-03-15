@@ -29,8 +29,8 @@ public abstract class Structure : MonoBehaviour
     public int MaxHP { get { return maxHP; } set {  maxHP = value; } }
 
     [SerializeField]
-    protected Fraction faction; 
-    public Fraction Faction { get { return faction; } set { faction = value; } }
+    protected Faction faction; 
+    public Faction Faction { get { return faction; } set { faction = value; } }
 
 
     [SerializeField]

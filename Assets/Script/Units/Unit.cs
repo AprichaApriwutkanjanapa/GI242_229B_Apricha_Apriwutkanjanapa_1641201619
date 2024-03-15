@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -69,8 +67,8 @@ public class Unit : MonoBehaviour
     private NavMeshAgent navAgent;
     public NavMeshAgent NavAgent { get { return navAgent; } }
     
-    [SerializeField] private Fraction faction;
-    public Fraction Faction { get { return faction; } set { faction = value; } }
+    [SerializeField] private Faction faction;
+    public Faction Faction { get { return faction; } set { faction = value; } }
     
     [SerializeField] private GameObject selectionVisual;
     public GameObject SelectionVisual { get { return selectionVisual; } }

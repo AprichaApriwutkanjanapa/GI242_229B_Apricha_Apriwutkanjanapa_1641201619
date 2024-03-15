@@ -27,13 +27,12 @@ public class MainUI : MonoBehaviour
         
     }
 
-    public void UpdateAllResource(Fraction faction)
+    public void UpdateAllResource(Faction faction)
     {
         unitCountText.text = faction.AliveUnits.Count.ToString();
         foodText.text = faction.Food.ToString();
         woodText.text = faction.Wood.ToString();
         woodText.text = faction.Gold.ToString();
         woodText.text = faction.Stone.ToString();
-        
     }
 }

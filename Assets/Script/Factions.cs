@@ -10,16 +10,12 @@ public enum Nation
     Pirates,
     France,
     Spain,
-    Portguese,
+    Portuguese,
     Dutch
 }
-public class Fraction : MonoBehaviour
+public class Faction : MonoBehaviour
 {
-    [SerializeField] private Nation nation;
-    public Nation Nation
-    {
-        get { return nation; }
-    }
+    [SerializeField] private Nation nation; public Nation Nation { get { return nation; } }
 
     [Header("Resources")]
     [SerializeField] private int food;

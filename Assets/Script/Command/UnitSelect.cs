@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,7 +10,7 @@ public class UnitSelect : MonoBehaviour
     public Unit CurUnit { get { return curUnit; } }
 
     private Camera cam;
-    private Fraction faction;
+    private Faction faction;
 
     public static UnitSelect instance;
 
@@ -25,7 +22,7 @@ public class UnitSelect : MonoBehaviour
 
     void Awake()
     {
-        faction = GetComponent<Fraction>();
+        faction = GetComponent<Faction>();
     }
 
     // Start is called before the first frame update
