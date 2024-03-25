@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Debug = System.Diagnostics.Debug;
 
 public class UnitSelect : MonoBehaviour
 {
@@ -36,11 +35,12 @@ public class UnitSelect : MonoBehaviour
 
         curUnit.ToggleSelectionVisual(true);
 
-        Debug.Write("Selected Unit");
+        //Debug.Log("Selected Unit");
 
         if (GameManager.instance.MyFaction.IsMyUnit(curUnit))
         {
             ShowUnit(curUnit);
+            Debug.Log("ShowUnitonSelectUnit");
         }
     }
 
@@ -76,6 +76,12 @@ public class UnitSelect : MonoBehaviour
         InfoManager.instance.ClearAllInfo();
     }
 
+    private void ShowUnit(Unit u)
+    {
+        InfoManager.instance.ShowAllInfo(u);
+        Debug.Log("ShowUnit");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -91,10 +97,4 @@ public class UnitSelect : MonoBehaviour
             TrySelect(Input.mousePosition);
         }
     }
-
-    private void ShowUnit(Unit u)
-    {
-        InfoManager.instance.ShowAllInfo(u);
-    }
-
 }

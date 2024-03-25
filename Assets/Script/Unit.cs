@@ -85,6 +85,7 @@ public class Unit : MonoBehaviour
     {
         if (selectionVisual != null)
             selectionVisual.SetActive(flag);
+            //Debug.Log("SelectionVisual.SetActive");
     }
     
    

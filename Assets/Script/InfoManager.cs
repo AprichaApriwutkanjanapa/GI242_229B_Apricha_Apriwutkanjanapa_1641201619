@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class InfoManager : MonoBehaviour
 {
-    [SerializeField] private Image unitPic, hpIcon, rsrcIcon, moveIcon, 
-        atkIcon, amrIcon, vslRngIcon, wpRngIcon;
-    [SerializeField] private TextMeshProUGUI nameTxt, hpTxt, rsrcTxt, moveTxt, 
-        atkTxt, amrTxt, vslRngTxt, wpRngTxt;
+     [SerializeField] private Image unitPic, hpIcon, rsrcIcon, moveIcon, atkIcon, amrIcon, vslRngIcon, wpRngIcon;
+    [SerializeField] private TextMeshProUGUI nameTxt, hpTxt, rsrcTxt, moveTxt, atkTxt, amrTxt, vslRngTxt, wpRngTxt;
 
     public static InfoManager instance;
     // Start is called before the first frame update
@@ -45,6 +43,8 @@ public class InfoManager : MonoBehaviour
 
         wpRngIcon.color = Color.white;
         wpRngTxt.text = $"{unit.WeaponRange}";
+
+         Debug.Log("ShowAllInfo");
     }
     public void ClearAllInfo()
     {
@@ -69,6 +69,8 @@ public class InfoManager : MonoBehaviour
 
         wpRngIcon.color = Color.clear;
         wpRngTxt.text = "";
+
+         //Debug.Log("ClearAllInfo");
     }
 
 }
