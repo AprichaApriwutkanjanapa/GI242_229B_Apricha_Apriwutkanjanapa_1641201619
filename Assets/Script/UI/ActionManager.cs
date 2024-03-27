@@ -8,12 +8,7 @@ public class ActionManager : MonoBehaviour
 
     private CanvasGroup cg;
     
-    public ActionManager instance;
-    // Start is called before the first frame update
-    void Start()
-    {
-        instance = this;
-    }
+    public static ActionManager instance;
     
     void Awake()
     {
@@ -90,13 +85,17 @@ public class ActionManager : MonoBehaviour
     
     public void CreateUnitButton(int n)//Map with Create Unit Btns
     {
-        //Debug.Log("Create " + n);
+        Debug.Log("Create " + n);
         UnitSelect.instance.CurBuilding.ToCreateUnit(n);
     }
 
     public void CreateBuildingButton(int n)//Map with Create Building Btns
     {
         //Debug.Log("1 - Click Button: " + n);
+        Unit unit = UnitSelect.instance.CurUnit;
+
+        if (unit.IsBuilder)
+            unit.Builder.ToCreateNewBuilding(n);
     }
 
 

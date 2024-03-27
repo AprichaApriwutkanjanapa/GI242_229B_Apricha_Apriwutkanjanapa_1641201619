@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Camera CamController;
+    [SerializeField] private Camera camController;
+    public Camera CamController { get { return camController; } }
 
     [Header("Move")] [SerializeField] private float moveSpeed;
     [SerializeField] private float xInput; //Horizontal keyboard Input
@@ -34,7 +31,7 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        CamController = Camera.main;
+        camController = Camera.main;
 
         newRotation = transform.rotation;
         rotationAmount = 1;

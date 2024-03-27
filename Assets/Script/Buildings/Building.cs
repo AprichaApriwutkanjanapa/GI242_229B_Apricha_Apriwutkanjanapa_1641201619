@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,9 +19,15 @@ public class Building : Structure
     [SerializeField] private float curUnitWaitTime = 0f;
 
     [SerializeField] private bool isFunctional;
-    public bool IsFunctional { get { return IsFunctional; } set { isFunctional = value; } }
+    public bool IsFunctional { get { return isFunctional; } set { isFunctional = value; } }
 
-
+    [SerializeField] private bool isHQ;
+    public bool IsHQ { get { return isHQ; } }
+    
+    //How deep into the ground the building is at the construction site
+    [SerializeField] private float intoTheGround = 5f;
+    public float IntoTheGround { get { return intoTheGround; } }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +76,7 @@ public class Building : Structure
         recruitList.RemoveAt(0);
 
         Unit unit = unitObj.GetComponent<Unit>();
+        unit.Fraction = faction;
         unit.MoveToPosition(rallyPoint.position); //Go to Rally Point
 
         //Add unit into faction's Army
@@ -87,11 +94,8 @@ public class Building : Structure
             SelectionVisual.SetActive(flag);
     }
 
-    void Update()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-            ToCreateUnit(0);
-
         if ((recruitList.Count > 0) && (recruitList[0] != null))
         {
             unitTimer += Time.deltaTime;
@@ -111,5 +115,4 @@ public class Building : Structure
             }
         }
     }
-
 }

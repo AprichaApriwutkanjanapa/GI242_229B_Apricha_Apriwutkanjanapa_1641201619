@@ -44,7 +44,7 @@ public class InfoManager : MonoBehaviour
         wpRngIcon.color = Color.white;
         wpRngTxt.text = $"{unit.WeaponRange}";
 
-         Debug.Log("ShowAllInfo");
+         //Debug.Log("ShowAllInfo");
     }
 
     public void ShowAllInfo(Building building)
