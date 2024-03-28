@@ -8,7 +8,11 @@ public enum UnitState
     Move,
     Attack,
     MoveToBuild,    //builder goes to build
-    BuildProgress,  //builder builds in progress
+    BuildProgress, //builder builds in progress
+    MoveToResource, //worker goes to resource
+    Gather, //worker gather resource
+    DeliverToHQ, //worker come back
+    StoreAtHQ, //worker gives resource to HQ
     Die
 }
 
@@ -73,7 +77,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private UnitCost unitCost;
     public UnitCost UnitCost { get { return unitCost; } }
 
-//time for increasing progress 1% for this unit, less is faster
+    //time for increasing progress 1% for this unit, less is faster
     [SerializeField] private float unitWaitTime = 0.1f;
     public float UnitWaitTime { get { return unitWaitTime; } }
     
@@ -83,9 +87,16 @@ public class Unit : MonoBehaviour
 
     [SerializeField] private Builder builder;
     public Builder Builder { get { return builder; } }
+    
+    
+    [SerializeField] private bool isWorker;
+    public bool IsWorker { get { return isWorker; } set { isWorker = value; } }
 
+    [SerializeField] private Worker worker;
+    public Worker Worker { get { return worker; } }
 
-
+    
+    
     void Awake()
         {
             navAgent = GetComponent<NavMeshAgent>();
@@ -93,6 +104,9 @@ public class Unit : MonoBehaviour
             //get the components
             if(IsBuilder)
                 builder = GetComponent<Builder>();
+            
+            if(IsWorker)
+                worker = GetComponent<Worker>();
         }
 
     public void ToggleSelectionVisual(bool flag)  //Check Toggle Flag under Current Unit 
@@ -133,6 +147,14 @@ public class Unit : MonoBehaviour
         {
             SetState(UnitState.Idle);
         }
+    }
+    
+    public void LookAt(Vector3 pos)
+    {
+        Vector3 dir = (pos - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
 
     void Update()

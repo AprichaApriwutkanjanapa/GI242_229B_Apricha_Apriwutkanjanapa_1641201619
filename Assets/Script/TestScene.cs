@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TestScene : MonoBehaviour
 {
-    [SerializeField]
-    private Unit[] units;
+    [SerializeField] private Unit[] units;
 
 
     public void SetIdle()
@@ -20,7 +19,7 @@ public class TestScene : MonoBehaviour
     {
         for (int i = 0; i < units.Length; i++)
         {
-            units[i].State = UnitState.Move;
+            units[i].State = UnitState.MoveToBuild;
         }
     }
 
@@ -28,7 +27,7 @@ public class TestScene : MonoBehaviour
     {
         for (int i = 0; i < units.Length; i++)
         {
-            units[i].State = UnitState.Attack;
+            units[i].State = UnitState.BuildProgress;
         }
     }
 }

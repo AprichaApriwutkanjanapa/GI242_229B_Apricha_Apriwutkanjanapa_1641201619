@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitAnimation : MonoBehaviour
@@ -20,17 +18,29 @@ public class UnitAnimation : MonoBehaviour
         anim.SetBool("IsIdle", false);
         anim.SetBool("IsMove", false);
         anim.SetBool("IsAttack", false);
+        anim.SetBool("IsBuilding", false);
+        anim.SetBool("IsMoveToPrecess", false);
 
         switch (u.State)
         {
             case UnitState.Idle:
                 anim.SetBool("IsIdle", true);
                 break;
+            
             case UnitState.Move:
                 anim.SetBool("IsMove", true);
                 break;
+            
             case UnitState.Attack:
                 anim.SetBool("IsAttack", true);
+                break;
+            
+            case UnitState.MoveToBuild:
+                anim.SetBool("IsMoveToProcess", true);
+                break;
+            
+            case UnitState.BuildProgress:
+                anim.SetBool("IsBuilding", true);
                 break;
         }
     }

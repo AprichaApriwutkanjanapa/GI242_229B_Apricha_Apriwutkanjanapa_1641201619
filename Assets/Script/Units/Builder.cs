@@ -156,6 +156,79 @@ public class Builder : MonoBehaviour
         }
     }
     
+    private void MoveToBuild(GameObject b)
+    {
+        if (b == null)
+            return;
+
+        unit.NavAgent.SetDestination(b.transform.position);
+        unit.NavAgent.isStopped = false;
+    }
+    
+    private void BuildProgress()
+    {
+        if (inProgressBuilding == null)
+            return;
+
+        unit.LookAt(inProgressBuilding.transform.position);
+        Building b = inProgressBuilding.GetComponent<Building>();
+
+        //building is already finished
+        if ((b.CurHP >= b.MaxHP) && b.IsFunctional)
+        {
+            inProgressBuilding = null; //Clear this job off his mind
+            unit.SetState(UnitState.Idle);
+            return;
+        }
+        //constructing
+        b.Timer += Time.deltaTime;
+        
+        if (b.Timer >= b.WaitTime)
+        {
+            b.Timer = 0;
+            b.CurHP++;
+
+            if (b.IsFunctional == false) //if this building is being built, not being fixed
+                //Raise up building from the ground
+                inProgressBuilding.transform.position += new Vector3(0f, b.IntoTheGround / (b.MaxHP - 1), 0f);
+
+            if (b.CurHP >= b.MaxHP) //finish
+            {
+                b.CurHP = b.MaxHP;
+                b.IsFunctional = true;
+
+                inProgressBuilding = null; //Clear this job off his mind
+                unit.SetState(UnitState.Idle);
+            }
+        }
+    }
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (unit.State == UnitState.Die)
+            return;
+
+        if (unit != null)
+        {
+            if (other.gameObject == inProgressBuilding)
+            {
+                unit.NavAgent.isStopped = true;
+                unit.SetState(UnitState.BuildProgress);
+            }
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        if (ghostBuilding != null)
+            Destroy(ghostBuilding);
+    }
+
+
+    
+    
+
+    
     void Update()
     {
         if (unit.State == UnitState.Die)
@@ -164,19 +237,28 @@ public class Builder : MonoBehaviour
         if (toBuild) // if this unit is to build something
         {
             GhostBuildingFollowsMouse();
-
+            
             if (Input.GetMouseButtonDown(0)) //click to select a building site
             {
                 //if mouse is over UI
                 if (EventSystem.current.IsPointerOverGameObject())
                     return;
+                
+                CheckClickOnGround();
             }
 
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
                 CancelToBuild();
         }
+
+        switch (unit.State)
+        {
+            case UnitState.MoveToBuild:
+                MoveToBuild(InProgressBuilding);
+                break;
+            case UnitState.BuildProgress:
+                BuildProgress();
+                break;
+        }
     }
-
-
-
 }
