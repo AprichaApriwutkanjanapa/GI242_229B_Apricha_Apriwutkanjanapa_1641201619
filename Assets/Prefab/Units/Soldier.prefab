@@ -827,7 +827,7 @@ MonoBehaviour:
   visualRange: 0
   weaponRange: 0
   state: 0
-  faction: {fileID: 8353533063956093064, guid: 49a8cc7a6f3f2524b85b827ad265dde1, type: 3}
+  faction: {fileID: 0}
   selectionVisual: {fileID: 3509459934400664049}
   unitCost:
     food: 50
@@ -837,6 +837,8 @@ MonoBehaviour:
   unitWaitTime: 0.1
   isBuilder: 0
   builder: {fileID: 0}
+  isWorker: 0
+  worker: {fileID: 0}
 --- !u!114 &4125952944883655271
 MonoBehaviour:
   m_ObjectHideFlags: 0

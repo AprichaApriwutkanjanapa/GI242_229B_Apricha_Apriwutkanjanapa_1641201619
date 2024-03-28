@@ -19,7 +19,7 @@ public class TestScene : MonoBehaviour
     {
         for (int i = 0; i < units.Length; i++)
         {
-            units[i].State = UnitState.MoveToBuild;
+            units[i].State = UnitState.Gather;
         }
     }
 

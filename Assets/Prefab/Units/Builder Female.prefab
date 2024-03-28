@@ -1172,7 +1172,7 @@ MonoBehaviour:
   visualRange: 20
   weaponRange: 15
   state: 0
-  faction: {fileID: 8353533063956093064, guid: 49a8cc7a6f3f2524b85b827ad265dde1, type: 3}
+  faction: {fileID: 0}
   selectionVisual: {fileID: 4226696255634235210}
   unitCost:
     food: 50

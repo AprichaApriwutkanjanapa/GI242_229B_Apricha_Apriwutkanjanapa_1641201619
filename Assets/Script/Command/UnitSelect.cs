@@ -20,6 +20,12 @@ public class UnitSelect : MonoBehaviour
     [SerializeField]
     private Building curBuilding; //current selected single building
     public Building CurBuilding { get { return curBuilding; } }
+    
+    
+    [SerializeField]
+    private ResourceSource curResource; //current selected resource
+
+
 
 
     void Awake()
@@ -62,6 +68,17 @@ public class UnitSelect : MonoBehaviour
             ShowBuilding(curBuilding);//Show building info
         }
     }
+    
+    private void ResourceSelect(RaycastHit hit)
+    {
+        curResource = hit.collider.GetComponent<ResourceSource>();
+        if (curResource == null)
+            return;
+
+        curResource.ToggleSelectionVisual(true);
+        ShowResource();//Show resource info
+    }
+
 
 
     private void TrySelect(Vector2 screenPos)
@@ -79,6 +96,9 @@ public class UnitSelect : MonoBehaviour
                     break;
                 case "Building":
                     BuildingSelect(hit);
+                    break;
+                case "Resource":
+                    ResourceSelect(hit);
                     break;
             }
         }
@@ -116,6 +136,13 @@ public class UnitSelect : MonoBehaviour
         InfoManager.instance.ShowAllInfo(b);
         ActionManager.instance.ShowCreateUnitMode(b);
     }
+    
+    private void ShowResource()
+    {
+        InfoManager.instance.ShowAllInfo(curResource);//Show resource info in Info Panel
+
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -136,4 +163,6 @@ public class UnitSelect : MonoBehaviour
             TrySelect(Input.mousePosition);
         }
     }
+    
+    
 }

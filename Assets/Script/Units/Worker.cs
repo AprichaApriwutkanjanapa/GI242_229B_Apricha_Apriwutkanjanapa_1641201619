@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Worker : MonoBehaviour
@@ -35,7 +34,26 @@ public class Worker : MonoBehaviour
     {
         unit = GetComponent<Unit>();
     }
-    
+
+    void Update()
+    {
+        switch (unit.State)
+        {
+            case UnitState.MoveToResource:
+                MoveToResourceUpdate();
+                break;
+            case UnitState.Gather:
+                GatherUpdate();
+                break;
+            case UnitState.DeliverToHQ:
+                DeliverToHQUpdate();
+                break;
+            case UnitState.StoreAtHQ:
+                StoreAtHQUpdate();
+                break;
+        }
+    }
+
     // move to a resource and begin to gather it
     public void ToGatherResource(ResourceSource resource, Vector3 pos)
     {
@@ -54,11 +72,91 @@ public class Worker : MonoBehaviour
         unit.NavAgent.SetDestination(pos);
     }
     
-    
-
-    // Update is called once per frame
-    void Update()
+    private void MoveToResourceUpdate()
     {
+        CheckForResource();
         
+        if (Vector3.Distance(transform.position, unit.NavAgent.destination) <= 2f)
+        {
+            if (curResourceSource != null)
+            {
+                unit.LookAt(curResourceSource.transform.position);
+                unit.NavAgent.isStopped = true;
+                unit.SetState(UnitState.Gather);
+            }
+        }
+    }
+    
+    private void GatherUpdate()
+    {
+        if (Time.time - lastGatherTime > gatherRate)
+        {
+            lastGatherTime = Time.time;
+
+            if (amountCarry < maxCarry)
+            {
+                if (curResourceSource != null)
+                {
+                    curResourceSource.GatherResource(gatherAmount);
+
+                    carryType = curResourceSource.RsrcType;
+                    amountCarry += gatherAmount;
+                }
+                else
+                    CheckForResource();
+            }
+            else //amount is full, go back to deliver at HQ
+                unit.SetState(UnitState.DeliverToHQ);
+        }
+    }
+    
+    private void DeliverToHQUpdate()
+    {
+        if (Time.time - unit.LastPathUpdateTime > unit.PathUpdateRate)
+        {
+            unit.LastPathUpdateTime = Time.time;
+
+            unit.NavAgent.SetDestination(unit.Fraction.GetHQSpawnPos());
+            unit.NavAgent.isStopped = false;
+        }
+
+        if (Vector3.Distance(transform.position, unit.Fraction.GetHQSpawnPos()) <= 1f)
+            unit.SetState(UnitState.StoreAtHQ);
+    }
+    
+    private void StoreAtHQUpdate()
+    {
+        unit.LookAt(unit.Fraction.GetHQSpawnPos());
+
+        if (amountCarry > 0)
+        {
+            // Deliver the resource to Faction
+            unit.Fraction.GainResource(carryType, amountCarry);
+            amountCarry = 0;
+
+            //Debug.Log("Delivered");
+        }
+        
+        CheckForResource();
+    }
+    
+    private void CheckForResource()
+    {
+        if (curResourceSource != null) //that resource still exists
+            ToGatherResource(curResourceSource, curResourceSource.transform.position);
+        else
+        {
+            //try to find a new resource
+            curResourceSource = unit.Fraction.GetClosestResource(transform.position, carryType);
+
+            //CheckAgain, if found a new one, go to it
+            if (curResourceSource != null)
+                ToGatherResource(curResourceSource, curResourceSource.transform.position);
+            else //can't find a new one
+            {
+                Debug.Log($"{unit.name} can't find a new tree");
+                unit.SetState(UnitState.Idle);
+            }
+        }
     }
 }
