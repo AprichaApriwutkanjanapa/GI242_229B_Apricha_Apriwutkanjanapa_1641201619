@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  unitName: Female Builder
+  unitName: Builder Girl
   unitPic: {fileID: 21300000, guid: 6788ce8377e5d0c4d9df3d2036539939, type: 3}
   curHP: 75
   maxHP: 75
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   visualRange: 20
   weaponRange: 15
   state: 0
-  faction: {fileID: 0}
+  faction: {fileID: 8353533063956093064, guid: 49a8cc7a6f3f2524b85b827ad265dde1, type: 3}
   selectionVisual: {fileID: 4226696255634235210}
   unitCost:
     food: 50
@@ -1218,13 +1218,15 @@ MonoBehaviour:
   toBuild: 0
   showGhost: 0
   buildingList:
-  - {fileID: 7397465272735171380, guid: 38854be9e3f4f1644853c18396ed24d7, type: 3}
-  - {fileID: 8526373948701723187, guid: f95bededbe2eb904586023da6e878c40, type: 3}
+  - {fileID: 4351783319928356461, guid: d3cf867f98578a44e9e9d57f75a85b1b, type: 3}
   - {fileID: 939908158095991766, guid: a296fba7d941e314bb44f3b8c9215fd9, type: 3}
+  - {fileID: 7397465272735171380, guid: 38854be9e3f4f1644853c18396ed24d7, type: 3}
+  - {fileID: 8526373948701723187, guid: 4ec417bf44a20064591b3c782dfb7618, type: 3}
   ghostBuildingList:
+  - {fileID: 4351783319928356461, guid: 5412a197f34ed23439618b109c1ac13e, type: 3}
+  - {fileID: 939908158095991766, guid: ce49e66ed01a8a74681868a4977f13d5, type: 3}
   - {fileID: 7397465272735171380, guid: 231e33d6445caf94eae889d010d5a25d, type: 3}
   - {fileID: 8526373948701723187, guid: 55bee984c773091469151877a51537d1, type: 3}
-  - {fileID: 939908158095991766, guid: ce49e66ed01a8a74681868a4977f13d5, type: 3}
   newBuilding: {fileID: 0}
   ghostBuilding: {fileID: 0}
   inProgressBuilding: {fileID: 0}

@@ -77,6 +77,10 @@ PrefabInstance:
       value: Fr, Regular
       objectReference: {fileID: 0}
     - target: {fileID: 4480148080359152928, guid: ad945da72a7e9b34eb43ae2efaab33a9, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480148080359152928, guid: ad945da72a7e9b34eb43ae2efaab33a9, type: 3}
       propertyPath: visualRange
       value: 20
       objectReference: {fileID: 0}
