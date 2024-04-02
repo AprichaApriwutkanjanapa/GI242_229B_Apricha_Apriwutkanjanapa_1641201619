@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4765442835147212824}
   - component: {fileID: 6949014255904422107}
   m_Layer: 2
-  m_Name: Headquarter_Ghost
+  m_Name: Fr_Headquarter_Ghost
   m_TagString: GhostBuilding
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 7397465272735171380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.51, y: -2.4, z: 14.09}
+  m_LocalPosition: {x: 0, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

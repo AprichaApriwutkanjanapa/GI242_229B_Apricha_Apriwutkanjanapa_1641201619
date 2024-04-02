@@ -23,6 +23,12 @@ public class Building : Structure
 
     [SerializeField] private bool isHQ;
     public bool IsHQ { get { return isHQ; } }
+
+    [SerializeField] private bool isHousing;
+    public bool IsHousing { get { return isHousing; } }
+
+    [SerializeField] private bool isBarrack;
+    public bool IsBarrack { get { return isBarrack; } }
     
     //How deep into the ground the building is at the construction site
     [SerializeField] private float intoTheGround;
@@ -69,10 +75,10 @@ public class Building : Structure
     {
         int id = recruitList[0].ID;
 
-        if (unitPrefabs[id] == null)
+        if (faction.UnitPrefabs[id] == null)
             return;
 
-        GameObject unitObj = Instantiate(unitPrefabs[id], spawnPoint.position, 
+        GameObject unitObj = Instantiate(faction.UnitPrefabs[id], spawnPoint.position, 
             Quaternion.Euler(0f, 180f, 0f), faction.UnitsParent);
 
         recruitList.RemoveAt(0);

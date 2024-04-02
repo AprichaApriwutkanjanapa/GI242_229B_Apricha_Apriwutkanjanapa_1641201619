@@ -1390,7 +1390,7 @@ GameObject:
   - component: {fileID: 4765442835147212824}
   - component: {fileID: 114240985115536697}
   m_Layer: 7
-  m_Name: Headquarter
+  m_Name: Fr_Headquarter
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1404,8 +1404,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7397465272735171380}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.51, y: -2.4, z: 14.09}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1414,7 +1414,7 @@ Transform:
   - {fileID: 1580256031289927581}
   - {fileID: 7522898681984437756}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3926203863728503492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,21 +1429,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureName: Headquarter
   structurePic: {fileID: 21300000, guid: 87c0ac1545d728046ad1c22faf57cad3, type: 3}
-  curHP: 0
+  curHP: 1
   maxHP: 100
-  faction: {fileID: 8353533063956093064, guid: 49a8cc7a6f3f2524b85b827ad265dde1, type: 3}
+  faction: {fileID: 8353533063956093064, guid: 55caf87970d8edd42b6f26576b884351, type: 3}
   selectionVisual: {fileID: 494094676289660665}
   spawnPoint: {fileID: 3639756357555545891}
   rallyPoint: {fileID: 1580256031289927581}
   unitPrefabs:
-  - {fileID: 111782, guid: ad945da72a7e9b34eb43ae2efaab33a9, type: 3}
-  - {fileID: 128380, guid: cba07c01f472b214d8e8dc59d0eb3967, type: 3}
+  - {fileID: 1988269880646954256, guid: 96beaa69f51f18c42a1025bd040b9166, type: 3}
   recruitList: []
   unitTimer: 0
   curUnitProgress: 0
   curUnitWaitTime: 0
-  isFunctional: 1
+  isFunctional: 0
   isHQ: 1
+  isHousing: 0
+  isBarrack: 0
   intoTheGround: 5
 --- !u!65 &820237527899246319
 BoxCollider:
