@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -13,20 +11,18 @@ public class MainUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI woodText;
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI stoneText;
+    
+    [SerializeField] private RectTransform selectionBox;
+    public RectTransform SelectionBox { get { return selectionBox; } }
 
     public static MainUI instance;
+    
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void UpdateAllResource(Fraction faction)
     {
         unitCountText.text = faction.AliveUnits.Count.ToString();

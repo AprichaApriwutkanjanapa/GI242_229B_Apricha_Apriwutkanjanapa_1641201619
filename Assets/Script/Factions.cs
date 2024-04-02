@@ -15,10 +15,7 @@ public enum Nation
 public class Fraction : MonoBehaviour
 {
     [SerializeField] private Nation nation;
-    public Nation Nation
-    {
-        get { return nation; }
-    }
+    public Nation Nation { get { return nation; } }
 
     [Header("Resources")]
     [SerializeField] private int food;
