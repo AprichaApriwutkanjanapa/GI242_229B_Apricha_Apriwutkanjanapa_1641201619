@@ -72,8 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 643249746007796503}
   - component: {fileID: 962784610632173079}
-  - component: {fileID: 553504001480763456}
-  - component: {fileID: -8413824638694534005}
   m_Layer: 0
   m_Name: Pirates
   m_TagString: Untagged
@@ -122,39 +120,8 @@ MonoBehaviour:
   buildingsParent: {fileID: 3047280112451025872}
   ghostBuildingParent: {fileID: 6801580847872474713}
   startPosition: {fileID: 3075022664758523112}
+  newResourceRange: 50
   aliveBuildings: []
---- !u!114 &553504001480763456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805204604294671286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ae2590674fcf64e81380549fbcf7aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  curUnit: {fileID: 0}
-  curBuilding: {fileID: 0}
---- !u!114 &-8413824638694534005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805204604294671286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db8e1d5b430d60a489fee63cc9c8065d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &5611053872202928849
 GameObject:
   m_ObjectHideFlags: 0

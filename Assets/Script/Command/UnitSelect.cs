@@ -80,6 +80,10 @@ public class UnitSelect : MonoBehaviour
             //Debug.Log("my building");
             ShowBuilding(curBuilding);//Show building info
         }
+        else
+        {
+            ShowEnemyBuilding(curBuilding);
+        }
     }
     
     private void ResourceSelect(RaycastHit hit)
@@ -168,6 +172,12 @@ public class UnitSelect : MonoBehaviour
     {
         InfoManager.instance.ShowEnemyAllInfo(u);
     }
+    
+    private void ShowEnemyBuilding(Building b)
+    {
+        InfoManager.instance.ShowEnemyAllInfo(b);
+    }
+
 
 
     // Update is called once per frame

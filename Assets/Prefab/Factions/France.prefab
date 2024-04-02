@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 643249746007796503}
   - component: {fileID: 8353533063956093064}
   m_Layer: 0
-  m_Name: Britain
+  m_Name: France
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,11 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bc19e673f868c4698069fcc2237b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nation: 1
-  food: 1000
-  wood: 600
+  nation: 3
+  food: 300
+  wood: 180
   gold: 500
-  stone: 200
+  stone: 1000
   aliveUnits: []
   unitsParent: {fileID: 7883286966453598649}
   buildingsParent: {fileID: 8856998984276528288}
