@@ -8,7 +8,11 @@ public class UnitSelect : MonoBehaviour
 
     [SerializeField] private List<Unit> curUnits = new List<Unit>(); 
     public List<Unit> CurUnits { get { return curUnits; } }
-
+    
+    [SerializeField]
+    private Unit curEnemy;
+    
+    
     private Camera cam;
     private Fraction faction;
 
@@ -56,6 +60,13 @@ public class UnitSelect : MonoBehaviour
             curUnits.Add(unit);
             unit.ToggleSelectionVisual(true);
             ShowUnit(unit);
+        }
+        else
+        {
+            //Single Enemy
+            curEnemy = unit;
+            curEnemy.ToggleSelectionVisual(true);
+            ShowEnemyUnit(unit);
         }
     }
     
@@ -118,6 +129,8 @@ public class UnitSelect : MonoBehaviour
             curBuilding.ToggleSelectionVisual(false);
         if (curResource != null)
             curResource.ToggleSelectionVisual(false);
+        if (curEnemy != null)
+            curEnemy.ToggleSelectionVisual(false);
     }
 
     private void ClearEverything()
@@ -149,6 +162,11 @@ public class UnitSelect : MonoBehaviour
     {
         InfoManager.instance.ShowAllInfo(curResource);//Show resource info in Info Panel
 
+    }
+
+    private void ShowEnemyUnit(Unit u)
+    {
+        InfoManager.instance.ShowEnemyAllInfo(u);
     }
 
 

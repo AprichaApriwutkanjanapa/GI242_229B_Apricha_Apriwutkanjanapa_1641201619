@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 7108266464425105572}
   - component: {fileID: 3333016885390471783}
   m_Layer: 6
-  m_Name: Builder Female
+  m_Name: Builder Girl
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
