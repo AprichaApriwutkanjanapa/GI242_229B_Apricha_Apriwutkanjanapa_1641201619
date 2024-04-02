@@ -72,8 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 643249746007796503}
   - component: {fileID: 8353533063956093064}
-  - component: {fileID: 8093139077758463952}
-  - component: {fileID: -6527062766286517089}
   m_Layer: 0
   m_Name: Britain
   m_TagString: Untagged
@@ -112,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bc19e673f868c4698069fcc2237b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nation: 1
+  nation: 0
   food: 0
   wood: 0
   gold: 0
@@ -122,39 +120,8 @@ MonoBehaviour:
   buildingsParent: {fileID: 8856998984276528288}
   ghostBuildingParent: {fileID: 2053779550916211012}
   startPosition: {fileID: 7951216694704519877}
+  newResourceRange: 50
   aliveBuildings: []
---- !u!114 &8093139077758463952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805204604294671286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ae2590674fcf64e81380549fbcf7aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  curUnit: {fileID: 0}
-  curBuilding: {fileID: 0}
---- !u!114 &-6527062766286517089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805204604294671286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db8e1d5b430d60a489fee63cc9c8065d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &4309773025296632783
 GameObject:
   m_ObjectHideFlags: 0

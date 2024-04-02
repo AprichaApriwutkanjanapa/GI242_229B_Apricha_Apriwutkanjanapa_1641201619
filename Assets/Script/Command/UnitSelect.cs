@@ -5,13 +5,15 @@ using UnityEngine.EventSystems;
 public class UnitSelect : MonoBehaviour
 {
     [SerializeField] private LayerMask layerMask;
-
-    [SerializeField] private List<Unit> curUnits = new List<Unit>(); 
-    public List<Unit> CurUnits { get { return curUnits; } }
-
+    
     private Camera cam;
     private Fraction faction;
-
+    
+    [SerializeField] private List<Unit> curUnits = new List<Unit>(); 
+    public List<Unit> CurUnits { get { return curUnits; } }
+    
+    [SerializeField] private Unit curEnemy;
+    
     public static UnitSelect instance;
     
     [SerializeField]
@@ -21,11 +23,11 @@ public class UnitSelect : MonoBehaviour
     
     [SerializeField]
     private ResourceSource curResource; //current selected resource
-    
-    
-    //private RectTransform selectionBox;
-    //private Vector2 oldAnchoredPos;//Box old anchored position
-    //private Vector2 startPos;//point where mouse is down
+
+    [SerializeField]
+    private RectTransform selectionBox;
+    private Vector2 oldAnchoredPos;//Box old anchored position
+    private Vector2 startPos;//point where mouse is down
     
 
     void Awake()
@@ -56,6 +58,13 @@ public class UnitSelect : MonoBehaviour
             curUnits.Add(unit);
             unit.ToggleSelectionVisual(true);
             ShowUnit(unit);
+        }
+        else
+        {
+            //Single Enemy
+            curEnemy = unit;
+            curEnemy.ToggleSelectionVisual(true);
+            ShowEnemyUnit(unit);
         }
     }
     
@@ -118,6 +127,8 @@ public class UnitSelect : MonoBehaviour
             curBuilding.ToggleSelectionVisual(false);
         if (curResource != null)
             curResource.ToggleSelectionVisual(false);
+        if (curEnemy != null)
+            curEnemy.ToggleSelectionVisual(false);
     }
 
     private void ClearEverything()
@@ -143,6 +154,11 @@ public class UnitSelect : MonoBehaviour
     {
         InfoManager.instance.ShowAllInfo(b);
         ActionManager.instance.ShowCreateUnitMode(b);
+    }
+
+    private void ShowEnemyUnit(Unit u)
+    {
+        InfoManager.instance.ShowEnemyAllInfo(u);
     }
     
     private void ShowResource()
@@ -181,6 +197,7 @@ public class UnitSelect : MonoBehaviour
         }
     }
     
+    //wait to be fix
     /*private void UpdateSelectionBox(Vector3 mousePos)
     {
         //Debug.Log("Mouse Pos - " + curMousePos);

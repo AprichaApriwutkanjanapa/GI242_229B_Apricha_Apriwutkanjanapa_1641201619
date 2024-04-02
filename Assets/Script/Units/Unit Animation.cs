@@ -31,7 +31,7 @@ public class UnitAnimation : MonoBehaviour
                 anim.SetBool("IsMove", true);
                 break;
             
-            case UnitState.Attack:
+            case UnitState.AttackUnit:
                 anim.SetBool("IsAttack", true);
                 break;
             
@@ -44,6 +44,10 @@ public class UnitAnimation : MonoBehaviour
                 break;
             
             case UnitState.MoveToResource:
+                anim.SetBool("IsMove", true);
+                break;
+            
+            case UnitState.MoveToEnemy:
                 anim.SetBool("IsMove", true);
                 break;
             

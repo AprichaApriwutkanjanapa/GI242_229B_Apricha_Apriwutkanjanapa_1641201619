@@ -73,6 +73,9 @@ public class UnitCommand : MonoBehaviour
                 case "Resource":
                     ResourceCommand(hit, unitSelect.CurUnits);
                     break;
+                case "Unit":
+                    CommandToUnit(hit, unitSelect.CurUnits);
+                    break;
             }
         }
     }
@@ -86,6 +89,29 @@ public class UnitCommand : MonoBehaviour
 
         Instantiate(vfxPrefab, new Vector3(pos.x, 0.1f, pos.z), Quaternion.identity);
     }
+    
+    
+    private void UnitAttackEnemy(Unit enemy, List<Unit> units)
+    {
+        foreach (Unit u in units)
+        {
+            u.ToAttackUnit(enemy);
+        }
+    }
+
+
+    private void CommandToUnit(RaycastHit hit, List<Unit> units)
+    {
+        Unit target = hit.collider.gameObject.GetComponent<Unit>();
+
+        if (target == null)
+            return;
+
+        if (target.Fraction == GameManager.instance.EnemyFaction)// if it is our enemy
+            UnitAttackEnemy(target, units);
+    }
+
+
 
     void Update()
     {
